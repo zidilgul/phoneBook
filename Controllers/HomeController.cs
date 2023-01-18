@@ -1,4 +1,5 @@
-﻿using System;
+﻿using phoneBook.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,23 +9,37 @@ namespace phoneBook.Controllers
 {
     public class HomeController : Controller
     {
+        RehberEntities db = new RehberEntities();
+        // GET: Home
         public ActionResult Index()
         {
+            return View(db.users.ToList());
+        }
+        public ActionResult Signup()
+        {
             return View();
         }
 
-        public ActionResult About()
+        [HttpPost]
+        public ActionResult Signup(users user)
         {
-            ViewBag.Message = "Your application description page.";
+            if (db.users.Any(x => x.userName == user.userName))
+            {
+                ViewBag.Notification = "Bu kullanıcı adı zaten var";
+                return View();
+            }
+            else
+            {
+                db.users.Add(user);
+                db.SaveChanges();
 
-            return View();
-        }
+                Session["idSS"] = user.id.ToString();
+                Session["usernameSS"] = user.userName.ToString();
+                Session["fullNameSS"] = user.fullName.ToString();
+                return RedirectToAction("Index", "Home");
+            }
 
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
 
-            return View();
         }
     }
 }

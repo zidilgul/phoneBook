@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="RehberModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="peopleInDirectory">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="fullName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="phone" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="userId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="users" Relationship="Self.FK__peopleInD__userI__38996AB5" FromRole="peopleInDirectory" ToRole="users" />
+  </EntityType>
+  <EntityType Name="users">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="fullName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="userName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="peopleInDirectory" Relationship="Self.FK__peopleInD__userI__38996AB5" FromRole="users" ToRole="peopleInDirectory" />
+  </EntityType>
+  <Association Name="FK__peopleInD__userI__38996AB5">
+    <End Role="users" Type="Self.users" Multiplicity="1" />
+    <End Role="peopleInDirectory" Type="Self.peopleInDirectory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="users">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="peopleInDirectory">
+        <PropertyRef Name="userId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="RehberEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="peopleInDirectory" EntityType="Self.peopleInDirectory" />
+    <EntitySet Name="users" EntityType="Self.users" />
+    <AssociationSet Name="FK__peopleInD__userI__38996AB5" Association="Self.FK__peopleInD__userI__38996AB5">
+      <End Role="users" EntitySet="users" />
+      <End Role="peopleInDirectory" EntitySet="peopleInDirectory" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

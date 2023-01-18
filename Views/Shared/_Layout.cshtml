@@ -16,18 +16,28 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("REHBER", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @if (Session["idSS"] != null)
+                {
+                    @Html.ActionLink("REHBER", "ListPeople", "People", new { id = Session["idSS"]}, new { @class = "navbar-brand" })
+                }
+                else
+                {
+                    @Html.ActionLink("REHBER", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                }
+
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>
-                        @Html.ActionLink("Create New", "Create", "People")
-                    </li>
-
+                    @if (Session["idSS"] != null)
+                    {
+                        <li>
+                            @Html.ActionLink("Create New", "Create", "People")
+                        </li>
+                    }
                 </ul>
                 <ul class="nav navbar-nav" style="float: right;">
                     <li>
-                        @if(Session["fullNameSS"] != null)
+                        @if (Session["fullNameSS"] != null)
                         {
                         <li style="color:aliceblue; margin: 15px;">@Session["fullNameSS"]</li>
                         <li>

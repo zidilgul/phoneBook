@@ -211,6 +211,7 @@
     <Content Include="Views\Home\Login.cshtml" />
     <Content Include="Views\People\ListPeople.cshtml" />
     <Content Include="Views\People\Create.cshtml" />
+    <Content Include="Views\People\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

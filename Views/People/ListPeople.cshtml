@@ -27,10 +27,9 @@
             @Html.DisplayFor(modelItem => item.phone)
         </td>
         <td>
-            @Html.ActionLink("Düzenle", "Edit", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Sil", "Delete", new { /* id=item.PrimaryKey */ })
+            @Html.ActionLink("Düzenle", "Edit", new { id = item.id }) |
+            @Html.ActionLink("Sil", "Delete", new { id = item.id })
         </td>
     </tr>
 }
-
 </table>

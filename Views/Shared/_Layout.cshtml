@@ -18,7 +18,7 @@
                 </button>
                 @if (Session["idSS"] != null)
                 {
-                    @Html.ActionLink("REHBER", "ListPeople", "People", new { id = Session["idSS"]}, new { @class = "navbar-brand" })
+                    @Html.ActionLink("REHBER", "ListPeople", "People", new { id = Session["idSS"] }, new { @class = "navbar-brand" })
                 }
                 else
                 {
@@ -36,21 +36,19 @@
                     }
                 </ul>
                 <ul class="nav navbar-nav" style="float: right;">
-                    <li>
+                    
                         @if (Session["fullNameSS"] != null)
                         {
                         <li style="color:aliceblue; margin: 15px;">@Session["fullNameSS"]</li>
                         <li>
                             @Html.ActionLink("Logout", "Logout", "Home")
                         </li>
-
-                    }
-                    else
-                    {
+                        }
+                         else
+                         {
                         <li>@Html.ActionLink("Signup", "Signup", "Home")</li>
                         <li>@Html.ActionLink("Login", "Login", "Home")</li>
-                    }
-                        </li>
+                         }
                     </ul>
                 </div>
             </div>

@@ -11,11 +11,18 @@ namespace phoneBook.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class peopleInDirectory
     {
         public int id { get; set; }
+
+        [Required(ErrorMessage = "Bu alan gerekli!")]
+        [Display(Name = "Ad Soyad")]
         public string fullName { get; set; }
+
+        [Required(ErrorMessage = "Bu alan gerekli!")]
+        [Display(Name = "Telefon Numarasý")]
         public string phone { get; set; }
         public int userId { get; set; }
     

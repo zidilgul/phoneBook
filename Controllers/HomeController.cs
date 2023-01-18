@@ -36,10 +36,41 @@ namespace phoneBook.Controllers
                 Session["idSS"] = user.id.ToString();
                 Session["usernameSS"] = user.userName.ToString();
                 Session["fullNameSS"] = user.fullName.ToString();
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Login", "Home");
             }
 
 
+        }
+
+        public ActionResult Logout()
+        {
+            Session.Clear();
+            return RedirectToAction("Login", "Home");
+        }
+
+
+        [HttpGet]
+        public ActionResult Login()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Login(users user)
+        {
+            var checkLogin = db.users.Where(x => x.userName.Equals(user.userName) && x.password.Equals(user.password)).FirstOrDefault();
+            if (checkLogin != null)
+            {
+                Session["idSS"] = checkLogin.id.ToString();
+                Session["usernameSS"] = checkLogin.userName.ToString();
+                Session["fullNameSS"] = checkLogin.fullName.ToString();
+                return RedirectToAction("ListPeople", "People", new { id = checkLogin.id });
+            }
+            else
+            {
+                ViewBag.Notification = "Kullanıcı adı veya şifre hatalı!";
+                return View();
+            }
         }
     }
 }

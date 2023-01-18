@@ -1,22 +1,20 @@
 ﻿@model IEnumerable<phoneBook.Models.users>
 
 @{
-    Layout = null;
+    ViewBag.Title = "Ana Sayfa";
+    Layout = "~/Views/Shared/_Layout.cshtml";
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 }
 
 <!DOCTYPE html>
-
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>Index</title>
 </head>
 <body>
-    <p>
-        @Html.ActionLink("Create New", "Signup")
-    </p>
+    <br />
+    <h2>Kullanıcılar</h2>
     <table class="table">
         <tr>
             <th>
@@ -25,10 +23,6 @@
             <th>
                 @Html.DisplayNameFor(model => model.userName)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.password)
-            </th>
-          <th></th>
         </tr>
 
         @foreach (var item in Model)
@@ -39,14 +33,6 @@
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.userName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.password)
-                </td>
-                <td>
-                    @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                    @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
                 </td>
             </tr>
         }

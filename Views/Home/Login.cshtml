@@ -1,7 +1,7 @@
 ﻿@model phoneBook.Models.users
 
 @{
-    ViewBag.Title = "Üye Ol";
+    ViewBag.Title = "Giriş Yap";
     Layout = "~/Views/Shared/_Layout.cshtml";
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
@@ -12,7 +12,7 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>Signup</title>
+    <title>Login</title>
 </head>
 <body>
     @Scripts.Render("~/bundles/jquery")
@@ -25,17 +25,9 @@
 
     <div class="form-horizontal">
         <br />
-        <h4>Kayıt Ol</h4>
+        <h4>Giriş Yap</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.fullName, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.fullName, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.fullName, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
         <div class="form-group">
             @Html.LabelFor(model => model.userName, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
@@ -51,17 +43,10 @@
                 @Html.ValidationMessageFor(model => model.password, "", new { @class = "text-danger" })
             </div>
         </div>
-        <div class="form-group">
-            @Html.LabelFor(model => model.rePassword, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.rePassword, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.rePassword, "", new { @class = "text-danger" })
-            </div>
-        </div>
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Kayıt Ol" class="btn btn-default" />
+                <input type="submit" value="Giriş Yap" class="btn btn-default" />
             </div>
         </div>
         <div class="form-group">

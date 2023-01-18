@@ -90,6 +90,14 @@ namespace phoneBook.Controllers
                 return View();
             }
         }
+        [HttpPost]
+        public ActionResult Delete(int id)
+        {
+            var p = db.peopleInDirectory.FirstOrDefault(x => x.id == id);
+            db.peopleInDirectory.Remove(p);
+            db.SaveChanges();
+            return RedirectToAction("ListPeople", "People", new { id = p.userId });
+        }
 
     }
 }
